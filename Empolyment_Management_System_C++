@@ -1,0 +1,256 @@
+// EMS.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include<windows.h>
+#include<conio.h>
+using namespace stad;
+struct emp {
+    string name;
+    string id;
+    string address;
+    int contact;
+    int salary;
+};
+emp e[100];
+int total = 0;
+void empdata() {
+    int choice;
+    cout << "How many employees data do you want to enter ??" << endl;
+    cin >> choice;
+    for (int i = total; i < (total + choice); i++) {
+        cout << "Enter data of Employyes " << i + 1 << endl;
+        cout << "Enter Name :";
+        cin >> e[i].name;
+        cout << "ID :";
+        cin >> e[i].id;
+        cout << "Address :";
+        cin >> e[i].address;
+        cout << "Contact :";
+        cin >> e[i].contact;
+        cout << "Salary :";
+        cin >> e[i].salary;
+    }
+    total = total + choice;
+}
+void show() {
+    if (total != 0) {
+        for (int i = 0; i < total; i++) {
+            cout << "Data of employee " << i + 1 << endl;
+            cout << "Employee Name :" << e[i].name << endl;
+            cout << "ID :" << e[i].id << endl;
+            cout << "Address :" << e[i].address << endl;
+            cout << "Contact :" << e[i].contact << endl;
+            cout << "Salary :" << e[i].salary << endl;
+
+
+        }
+    }
+    else {
+        cout << "Your record is empty !!" << endl;
+    }
+}
+void search() {
+    if (total != 0) {
+        string id;
+        cout << "Enter an ID which you want to search " << endl;
+        cin >> id;
+        for (int i = 0; i < total; i++) {
+            if (id == e[i].id) {
+                cout << "Data of employee " << i + 1 << endl;
+                cout << "Employee Name :" << e[i].name << endl;
+                cout << "ID :" << e[i].id << endl;
+                cout << "Address :" << e[i].address << endl;
+                cout << "Contact :" << e[i].contact << endl;
+                cout << "Salary :" << e[i].salary << endl;
+                break;
+            }
+            else if (i == total - 1) {
+                cout << "No such record found " << endl;
+            }
+        }
+
+    }
+    else {
+        cout << "Your record is Empty " << endl;
+    }
+}
+void update() {
+    if (total != 0) {
+        string id;
+        cout << "Enter an ID which you want to update " << endl;
+        cin >> id;
+        for (int i = 0; i < total; i++) {
+            if (id == e[i].id) {
+                cout << "Previous Data :" << endl;
+                cout << "Data of employee " << i + 1 << endl;
+                cout << "Employee Name :" << e[i].name << endl;
+                cout << "ID :" << e[i].id << endl;
+                cout << "Address :" << e[i].address << endl;
+                cout << "Contact :" << e[i].contact << endl;
+                cout << "Salary :" << e[i].salary << endl;
+                cout << "Enter New Data :" << endl;
+                cout << "Enter Name :";
+                cin >> e[i].name;
+                cout << "ID :";
+                cin >> e[i].id;
+                cout << "Address :";
+                cin >> e[i].address;
+                cout << "Contact :";
+                cin >> e[i].contact;
+                cout << "Salary :";
+                cin >> e[i].salary;
+                break;
+            }
+            else if (i == total - 1) {
+                cout << "No such record found " << endl;
+            }
+        }
+
+    }
+    else {
+        cout << "Your record is Empty " << endl;
+
+    }
+}
+void Delete() {
+    char Us3er;
+    cout << "Press 1 to delete full Record " << endl;
+    cout << "Press 2 to delete a specific record " << endl;
+   // Us3er = getch();
+    cin >> Us3er;
+    if (Us3er == '1') {
+        total = 0;
+        cout << "All record is deleted" << endl;
+    }
+    else if (Us3er == '2') {
+        string id;
+        cout << "Enter id of data which you want to delete" << endl;
+        cin >> id;
+        for (int i = 0; i < total; i++) {
+            if (id == e[i].id) {
+                for (int j = i; j < total; j++) {
+                    e[j].name = e[j + 1].name;
+                    e[j].id = e[j + 1].id;
+                    e[j].address = e[j + 1].address;
+                    e[j].contact = e[j + 1].contact;
+                    e[j].salary = e[j + 1].salary;
+                    total--;
+                    cout << "Your required recored is deleted" << endl;
+                    break;
+
+                }
+                if (i == total - 1) {
+                    cout << "No such record found" << endl;
+                }
+            }
+
+        }
+    }
+    else
+    {
+        cout << "Your record is empty" << endl;
+    }
+
+}
+
+
+int main()
+{
+    cout << "\n\n\t\tEmployee Management System" << endl;
+    cout << "\n\n\t\tSign Up" << endl;
+    string username, password;
+    cout << "\n\t\tEnter username :";
+    cin >> username;
+    cout << "\n\t\tEnter password :";
+    cin >> password;
+    cout << "\n\tYour id is creating please wait";
+    for (int i = 0; i < 4; i++)
+    {
+        cout << ".";
+        Sleep(1000);
+    }
+    cout << "\n\n\t\tYoue Id cerated successfully" << endl;
+    system("CLS");
+stat:
+    system("CLS");
+    cout << "\n\n\t\tEmployee Management System" << endl;
+    cout << "\n\n\t\tLogin" << endl;
+    string username1, password1;
+    cout << "Username :";
+    cin >> username1;
+    cout << "Password :";
+    cin >> password1;
+    if (username == username1 && password == password1)
+    {
+        system("CLS");
+        char user;
+        while (1)
+        {
+            cout << "\n\nPress 1 to enter data" << endl;
+            cout << "Press 2 to show data" << endl;
+            cout << "Press 3 to search data" << endl;
+            cout << "Press 4 to update data" << endl;
+            cout << "Press 5 to delete data" << endl;
+            cout << "Press 6 to logout" << endl;
+            cout << "Press 7 to exit" << endl;
+            // user = getch();
+            cin >> user;
+            system("CLS");
+            switch (user)
+            {
+            case '1':
+                empdata();
+                break;
+
+            case '2':
+                show();
+                break;
+            case '3':
+                search();
+                break;
+
+            case '4':
+                update();
+                break;
+            case '5':
+                Delete();
+                break;
+            case '6':
+                goto stat;
+                break;
+            case '7':
+                return 0;
+                
+            default:
+                cout << "\aInvalid input" << endl;
+                break;
+            }
+
+        }
+    }
+    else if (username1 != username)
+    {
+        cout << "Your username is incorrect" << endl;
+        Sleep(3000);
+        goto stat;
+    }
+    else if (password1 != password)
+    {
+        cout << "Your password is incorrect" << endl;
+        Sleep(3000);
+        goto stat;
+    }
+    return 0;
+}
+
+// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
+// Debug program: F5 or Debug > Start Debugging menu
+
+// Tips for Getting Started: 
+//   1. Use the Solution Explorer window to add/manage files
+//   2. Use the Team Explorer window to connect to source control
+//   3. Use the Output window to see build output and other messages
+//   4. Use the Error List window to view errors
+//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
+//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
